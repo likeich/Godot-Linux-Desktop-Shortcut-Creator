@@ -4,9 +4,9 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	create_shortcut(true)
+	create_shortcut()
 
-func create_shortcut(save_to_applications: bool = false) -> void:
+func create_shortcut() -> void:
 	# Get username
 	var output := []
 	var _error = OS.execute("whoami", [], true, output)
@@ -18,7 +18,7 @@ func create_shortcut(save_to_applications: bool = false) -> void:
 	
 	# Prepare paths.
 	var user_folder_path := "/home/" + username + "/.local/share/godot/app_userdata/" + project_name + "/"
-	var abs_desktop_path := "/home/" + username + "/Desktop/" + project_name + ".desktop"
+	var desktop_file_path := user_folder_path + project_name + ".desktop"
 	var exec_path := OS.get_executable_path().split(username + "/")[1]
 	
 	# Save game icon to storage.
@@ -28,7 +28,7 @@ func create_shortcut(save_to_applications: bool = false) -> void:
 	
 	# Write out file with all the necessary info.
 	var file := File.new()
-	_error = file.open(abs_desktop_path, File.WRITE)
+	_error = file.open(desktop_file_path, File.WRITE)
 	file.store_string("[Desktop Entry]\n")
 	file.store_string("Encoding=UTF-8\n")
 	file.store_string("Name=" + project_name + "\n")
@@ -40,8 +40,7 @@ func create_shortcut(save_to_applications: bool = false) -> void:
 	file.store_string("Categories=Game;")
 	file.close()
 	
-	if save_to_applications:
-		_error = OS.execute("cp", [abs_desktop_path, "/home/" + username + "/.local/share/applications"], true, output)
-		_error = OS.execute("cp", [abs_desktop_path, "/usr/share/applications"], true, output)
+	_error = OS.execute("cp", [desktop_file_path, "/home/" + username + "/.local/share/applications"], true, output)
+	_error = OS.execute("cp", [desktop_file_path, "/usr/share/applications"], true, output)
 	
-	_error = OS.execute("chmod", ["+x", abs_desktop_path], true, output)
+	_error = OS.execute("chmod", ["+x", desktop_file_path], true, output)
