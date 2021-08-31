@@ -3,8 +3,10 @@ extends Node
 
 
 # Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
-#	create_shortcut()
+func _ready() -> void:
+#	if OS.has_feature("standalone"):
+		create_shortcut()
+		get_tree().quit()
 
 func create_shortcut() -> void:
 	# Get username
