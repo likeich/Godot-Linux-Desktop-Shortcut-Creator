@@ -1,3 +1,4 @@
+![Screenshot from 2021-08-30 21-38-08](https://user-images.githubusercontent.com/57882701/131429136-1b065dc2-d79f-44ac-aa81-1c4bc9f100de.png)
 # Godot Linux Shortcut Creator
  A simple script for creating desktop files and registering godot games as applications in Linux.
  
