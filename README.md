@@ -1,6 +1,8 @@
 # Godot Linux Shortcut Creator
  A simple script for creating desktop files and registering godot games as applications in Linux.
  
+ <a target="_blank" href="https://icons8.com/icon/83740/shortcut">Shortcut</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+ 
  This is recommended for non-Steam games that users will download onto their Linux-based computers. It is not recommended for Steam because Steam automatically creates shortcuts.
 
 Usage:
