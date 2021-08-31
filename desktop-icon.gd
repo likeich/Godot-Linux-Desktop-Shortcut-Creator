@@ -3,8 +3,8 @@ extends Node
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	create_shortcut()
+#func _ready() -> void:
+#	create_shortcut()
 
 func create_shortcut() -> void:
 	# Get username
@@ -40,6 +40,7 @@ func create_shortcut() -> void:
 	file.store_string("Categories=Game;")
 	file.close()
 	
+	# Copies the desktop file to the right places and allows it to be registered.
 	_error = OS.execute("cp", [desktop_file_path, "/home/" + username + "/.local/share/applications"], true, output)
 	_error = OS.execute("cp", [desktop_file_path, "/usr/share/applications"], true, output)
 	
